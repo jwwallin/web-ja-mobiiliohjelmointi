@@ -1,20 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Course } from './Course.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Header } from './Header.js';
+import { Contents } from './Contents.js';
+import { Total } from './Total.js';
 
 const App = () => {
     const course = {
         name: 'Superadvanced web and mobile programming',
         parts: [
-            { id: 1, name: 'Basics of React', exercises: 8 },
-            { id: 2, name: 'Using props', exercises: 10 },
-            { id: 3, name: 'Component states', exercises: 12 },
+            { name: 'Basics of React', exercises: 8 },
+            { name: 'Using props', exercises: 10 },
+            { name: 'Component states', exercises: 12 },
         ]
-    }
+    };
+    const total = course.parts.reduce((sum, next) => sum + next.exercises, 0);
 
     return (
         <div>
-            <Course course={course} />
+            <Header coursename={course.name} />
+            <Contents parts={course.parts} />
+            <Total total={total} />
         </div>
     )
 }
@@ -22,4 +27,4 @@ const App = () => {
 ReactDOM.render(
     <App />,
     document.getElementById('root')
-)
+);
